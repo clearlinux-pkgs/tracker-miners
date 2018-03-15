@@ -4,7 +4,7 @@
 #
 Name     : tracker-miners
 Version  : 2.0.4
-Release  : 1
+Release  : 2
 URL      : https://download.gnome.org/sources/tracker-miners/2.0/tracker-miners-2.0.4.tar.xz
 Source0  : https://download.gnome.org/sources/tracker-miners/2.0/tracker-miners-2.0.4.tar.xz
 Summary  : No detailed summary available
@@ -108,8 +108,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1518734722
-%configure --disable-static --disable-schemas-compile --disable-journal --disable-libstemmer --disable-upower --disable-hal --disable-libexif --disable-libiptcdata --disable-exempi --disable-miner-fs --disable-extract --disable-tracker-writeback --disable-miner-apps --disable-miner-rss --disable-taglib --disable-enca --disable-icu-charset-detection --disable-libxml2 --disable-unzip-ps-gz-files --disable-poppler --disable-libgxps --disable-libgsf --disable-libosinfo --disable-libgif --disable-libjpeg --disable-libtiff --disable-libpng --disable-libvorbis --disable-libflac --disable-libcue --disable-abiword --disable-dvi --disable-mp3 --disable-ps --disable-text --disable-icon --disable-playlist --disable-guarantee-metadata
+export SOURCE_DATE_EPOCH=1521127298
+%configure --disable-static --disable-schemas-compile --disable-journal --disable-libstemmer --disable-upower --disable-hal --disable-libexif --disable-libiptcdata --disable-exempi --disable-extract --disable-tracker-writeback --disable-miner-apps --disable-miner-rss --disable-taglib --disable-enca --disable-icu-charset-detection --disable-libxml2 --disable-unzip-ps-gz-files --disable-poppler --disable-libgxps --disable-libgsf --disable-libosinfo --disable-libgif --disable-libjpeg --disable-libtiff --disable-libpng --disable-libvorbis --disable-libflac --disable-libcue --disable-abiword --disable-dvi --disable-mp3 --disable-ps --disable-text --disable-icon --disable-playlist --disable-guarantee-metadata
 make  %{?_smp_mflags}
 
 %check
@@ -120,7 +120,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1518734722
+export SOURCE_DATE_EPOCH=1521127298
 rm -rf %{buildroot}
 %make_install
 %find_lang tracker-miners
@@ -131,15 +131,19 @@ rm -rf %{buildroot}
 %files bin
 %defattr(-,root,root,-)
 /usr/libexec/tracker-extract
+/usr/libexec/tracker-miner-fs
 
 %files config
 %defattr(-,root,root,-)
 /usr/lib/systemd/user/tracker-extract.service
+/usr/lib/systemd/user/tracker-miner-fs.service
 
 %files data
 %defattr(-,root,root,-)
 /usr/share/dbus-1/services/org.freedesktop.Tracker1.Miner.Extract.service
+/usr/share/dbus-1/services/org.freedesktop.Tracker1.Miner.Files.service
 /usr/share/glib-2.0/schemas/org.freedesktop.Tracker.Extract.gschema.xml
+/usr/share/glib-2.0/schemas/org.freedesktop.Tracker.Miner.Files.gschema.xml
 /usr/share/glib-2.0/schemas/org.freedesktop.TrackerMiners.enums.xml
 /usr/share/tracker-miners/extract-rules/10-bmp.rule
 /usr/share/tracker-miners/extract-rules/10-comics.rule
@@ -151,6 +155,7 @@ rm -rf %{buildroot}
 /usr/share/tracker-miners/extract-rules/90-gstreamer-image-generic.rule
 /usr/share/tracker-miners/extract-rules/90-gstreamer-video-generic.rule
 /usr/share/tracker/miners/org.freedesktop.Tracker1.Miner.Extract.service
+/usr/share/tracker/miners/org.freedesktop.Tracker1.Miner.Files.service
 
 %files doc
 %defattr(-,root,root,-)
