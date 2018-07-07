@@ -1,3 +1,13 @@
+NEW in 2.0.5 - 2018-06-25
+=========================
+
+  * tracker-extract: Made daemon able to shutdown on inactivity, lifetime
+    will be managed by tracker-miner-fs
+  * tracker-stract: Fixes in generated SPARQL for geolocation data
+  * build: Multiple improvements and library detection fixes
+
+Translations: el, en_GB, hr, ro, ru
+
 NEW in 2.0.4 - 2018-02-07
 =========================
 

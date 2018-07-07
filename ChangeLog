@@ -1,3 +1,106 @@
+2018-06-25  Carlos Garnacho  <carlosg@gnome.org>
+
+	Release 2.0.5
+
+2018-06-23  Carlos Garnacho  <carlosg@gnome.org>
+
+	tracker-extract: Prepare for ::finished without being started
+	This may be the situation when there's not items left to process
+	right from the start.
+
+	tracker-extract: Fix resource hierarchy in gstreamer geolocation
+	The slo:postalAddress property is defined on the slo:GeoLocation class,
+	not on nfo:FileDataObject. This produced wrong sparql.
+
+	tracker-extract: Use set_uri() when setting nco:PostalAddress type
+	Using set_string() results in wrong sparql.
+
+	tracker-extract: Use Restart=on-abnormal on systemd service file
+	This reiterates a bit the role of the extractor watchdog on
+	tracker-miner-fs (and probably that one should be made optional on
+	systemd enabled installs). But now that the service is able to
+	shutdown when idle, we only want it to be restarted in case of
+	crashes, etc.
+
+	tracker-extract: Delegate activation on tracker-miner-fs
+	This process is safe to shutdown on inactivity, so let's just do
+	that. tracker-miner-fs was already partially in charge of
+	tracker-extract's lifetime through its watchdog. With this commit
+	it is now totally in charge of it, autostarting it whenever there's
+	any content that hasn't gone yet through it.
+
+	In order to keep recovering from crashes from tracker extract,
+	perform the check whenever the DBus name is lost, it'll be a no-op
+	if tracker-extract is legitimately shutting down due to inactivity.
+
+2018-06-17  Carlos Garnacho  <carlosg@gnome.org>
+
+	autotools: Use pkg-config to detect libjpeg
+
+2018-06-17  Yegor Timoshenko  <yegortimoshenko@riseup.net>
+
+	Use pkg-config for libjpeg discovery
+	https://bugzilla.gnome.org/show_bug.cgi?id=795577
+
+2018-06-17  Jan Tojnar  <jtojnar@gmail.com>
+
+	extract/pdf: fix poppler-glib header name
+	The extractor was trying to include <glib/poppler.h> but poppler-glib.pc
+	contains the following:
+
+	    Cflags: -I${includedir}/poppler/glib
+
+	This resulted in the header not being found on NixOS.
+
+	This patch switches to the correct header name, congruent with the
+	documentation:
+
+	https://people.freedesktop.org/~ajohnson/docs/poppler-glib/PopplerDocument.html#PopplerDocument.includes
+
+	https://bugzilla.gnome.org/show_bug.cgi?id=795573
+
+2018-06-02  Sam Thursfield  <sam@afuera.me.uk>
+
+	meson: Fix names of libjpeg and libgif
+	These were never being found as I had got the names wrong.
+
+	meson: Don't explicitly depend on libtracker-sparql in tracker-extract
+	This was causing tracker-extract to link against libtracker-common
+	explicitly, when it should only be linking against
+	libtracker-miners-common.
+
+2018-06-01  Jan Tojnar  <jtojnar@gmail.com>
+
+	meson: add install_rpath to tracker-writeback
+	During meson port, this was probably forgotten,
+	leading to a broken program.
+
+	https://bugzilla.gnome.org/show_bug.cgi?id=795574
+
+2018-06-01  Yegor Timoshenko  <yegortimoshenko@riseup.net>
+
+	Fix typo in gexiv2 meson build
+
+2018-04-19  Daniel Șerbănescu  <daniel@serbanescu.dk>
+
+	Update Romanian translation
+
+2018-03-20  gogo  <trebelnik2@gmail.com>
+
+	Add Croatian translation
+
+2018-03-19  Stas Solovey  <whats_up@tut.by>
+
+	Update Russian translation
+
+2018-03-10  Bruce Cowan  <bruce@bcowan.eu>
+
+	Update British English translation
+
+2018-03-06  Efstathios Iosifidis  <eiosifidis@gnome.org>
+
+	Update Greek translation
+
 2018-02-07  Carlos Garnacho  <carlosg@gnome.org>
 
 	Release 2.0.4
