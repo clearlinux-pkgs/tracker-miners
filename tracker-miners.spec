@@ -4,7 +4,7 @@
 #
 Name     : tracker-miners
 Version  : 2.0.5
-Release  : 9
+Release  : 10
 URL      : https://download.gnome.org/sources/tracker-miners/2.0/tracker-miners-2.0.5.tar.xz
 Source0  : https://download.gnome.org/sources/tracker-miners/2.0/tracker-miners-2.0.5.tar.xz
 Summary  : No detailed summary available
