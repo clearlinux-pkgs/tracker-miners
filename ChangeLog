@@ -1,3 +1,508 @@
+2018-07-23  Carlos Garnacho  <carlosg@gnome.org>
+
+	Release 2.1.0
+
+2018-07-23  Carlos Garnacho  <mrgarnacho@gmail.com>
+
+	Merge branch 'wip/carlosg/extract-persistent-ignore' into 'master'
+	tracker-extract: Tag errored out files as to be ignored
+
+	Closes #6
+
+	See merge request GNOME/tracker-miners!10
+
+2018-07-23  Carlos Garnacho  <carlosg@gnome.org>
+
+	tracker-extract: Tag errored out files as to be ignored
+	The TrackerExtractPersistence stuff takes care of marking files as ignored
+	whenever those trigger crashes. However for the files that simply error out
+	we just add those to a runtime blacklist, which gets forgotten on next runs.
+
+	Those will trigger message/warning logging each time tracker-extract is
+	restarted, which is more often now. Just mark those as failures as it'd
+	happen with files resulting in crashes. We need to think how these files
+	are generically retried after extractor fixes/updates, but that is also
+	missing for crashing files.
+
+	https://gitlab.gnome.org/GNOME/tracker-miners/issues/6
+
+	Closes: #6
+
+	Merge branch 'sam/domain-for-extract-watchdog'
+
+2018-07-23  Sam Thursfield  <sam@afuera.me.uk>
+
+	tracker-miner-fs: Honour domain when (re)starting tracker-extract
+	When a custom domain is being used, we shouldn't try to watch
+	org.freedesktop.Tracker.Miner.Extract on DBus, we should use the
+	correct domain-specific name instead.
+
+	See: https://gitlab.gnome.org/GNOME/tracker-miners/issues/2
+
+2018-07-23  Daniel Mustieles  <daniel.mustieles.contractor@bbva.com>
+
+	Updated Spanish translation
+
+2018-07-21  Sam Thursfield  <sam@afuera.me.uk>
+
+	Merge branch 'sam/functional-tests-2' into 'master'
+	Further functional-test fixes
+
+	See merge request GNOME/tracker-miners!9
+
+	functional-tests: Un-skip 3 more tests
+	With the previous fixes these are now working reliably.
+
+	functional-tests: Fix another await_property_changed() issue
+	Deletes could cancel out inserts if we were unlucky.
+
+	functional-tests: Fix more issues in awaiting for property changes
+	We actually get a GraphUpdated signal per RDF class, and we need to
+	filter out those we don't care about.
+
+	This was breaking tests in some cases as they would get double
+	notifications and get ahead of themselves. For example the
+	410-extractor-decorator test would wait for changes to nie:title on
+	an nmm:MusicPiece resource. But music files also have class nfo:Audio
+	and so there would be two GraphUpdated signals for each change, one
+	for the nmm:MusicPiece class and one for the nfo:Audio class.
+
+	functional-tests: Remove needless class attribute
+
+	functional-tests/410-extractor-decorator.py: Speed up change notifications
+
+	functional-tests/410-extractor-decorator.py: Add missing import
+
+	functional-tests/test-runner.sh: Fix clean up after failed tests
+	The script was not killing the D-Bus daemon if a test failed with an
+	error code, which led to a resource leak.
+
+	On my machine this was leading to exhaustion of inotify handles,
+	which was in turn causing tests to fail randomly.
+
+	Revert "functional-tests: Fix await_property_change()"
+	This reverts commit bf5e6bc48c563efa4f91ce957f587de1e8dc824b.
+
+	Revert "functional-tests: Fix issues in await_property_changed_logic"
+	This reverts commit 5480092883159a1744dd9977c75e708c20c75e2b.
+
+	functional-tests: Fix issues in await_property_changed_logic
+	If an insert was found and a delete event wasn't found, the delete
+	event could "cancel out" the insert :/
+
+	functional-tests: Use exception propagation when graph updates time out
+	This is possible since 9bb27e8e295561e7a897ecd11da4337b5a64db74.
+
+2018-07-21  Rafael Fontenelle  <rafaelff@gnome.org>
+
+	Update Brazilian Portuguese translation
+
+2018-07-20  Sam Thursfield  <sam@afuera.me.uk>
+
+	Merge branch 'sam/functional-tests' into 'master'
+	Enable functional tests in tracker-miners
+
+	Closes #4
+
+	See merge request GNOME/tracker-miners!8
+
+	functional-tests: Fix hang in Helper.stop()
+	If the process had already stopped, we would run the mainloop anyway
+	and hang forever.
+
+	functional-tests: Reduce timeout to 60 seconds
+	It's annoying to wait 3 minutes in cases where a test has just hung
+	(which seems to happen frequently :/).
+
+	If a test suite times out after 1 minute, let's ideally try to
+	speed it up, but if not split it up into parts that do execute
+	in under 1 minute.
+
+	functional-tests: Kill all subprocesses if one dies
+	This fixes an issue where `meson test` would hang until the test timed
+	out, instead of exiting immediately if one subprocess failed.
+
+	functional-tests/300-miner-basic-ops.py: Remove pointless print()
+
+	functional-tests: Fix exception handling from GLib main loop
+	A common mistake with PyGObject code is to raise exceptions in GLib
+	main loop callbacks hoping that they will function correctly. Instead
+	they are ignored and we need to pass them outside the main loop. Note
+	in particular that sys.exit() actually just raises an exception, so it
+	can't work inside GLib main loop callbacks!
+
+	This fixes issues where a Tracker process would exit and the test would
+	hang instead of raising an error.
+
+	functional-tests: Run extractor tests before the rest of the functional tests
+	They are much faster and fail less weirdly than the tests that
+	involve waiting for the miner.
+
+	meson: Fix warnings from extractor during functional-tests
+	In order to run tracker-extract without installing it, we set the
+	TRACKER_EXTRACT_RULES_DIR path to point to the src/tracker-extract
+	directory.
+
+	This is problematic because that directory contains lots of stuff
+	that isn't .rule files and also contains .rule files for extractors
+	which might not be enabled. The result being pointless warnings
+	during the tests like this:
+
+	    ** (tracker-extract:29193): WARNING **: 16:18:11.703: Could not load module '/home/sam/src/tracker-miners/build/tests/functional-tests/../../src/tracker-extract/libextract-libav.so': /home/sam/src/tracker-miners/build/tests/functional-tests/../../src/tracker-extract/libextract-libav.so: cannot open shared object file: No such file or directory
+
+	Using Meson it's fairly straightforward to create a separate
+	directory in the build tree to contain these files, which fixes
+	the warnings.
+
+	The same thing could be implemented for Autotools, but it doesn't
+	affect the actual functionality of the tests so I haven't spent time
+	on it myself.
+
+	meson: Enable verbose functional-tests by default
+	Since Meson hides all the output anyway by default, there's no point in
+	having this extra step.
+
+2018-07-20  Tim Sabsch  <tim@sabsch.com>
+
+	Update German translation
+
+2018-07-19  Sam Thursfield  <sam@afuera.me.uk>
+
+	meson: Fix names of extractor tests
+
+	meson: Fix issues building with tracker core as a Meson subproject
+
+	ci: Enable verbose output for the functional-tests
+	Otherwise it's hard to see what a gwan
+
+	ci: Set LANG in Meson build, as we do with Tracker already
+
+	ci: Functional tests require a D-Bus daemon
+
+	ci: Avoid dumping screenfuls of CI_ variables for each failed test
+
+	ci: Enable functional tests
+	PyGI is now needed in the images as an extra dependency.
+
+	functional-tests: Skip extractor video tests if no h264 codec is found
+	These aren't shipped by default in many distros due to possible patent
+	issues, so let's not hard-depend on them.
+
+	We need some new video tests which use a patent-free codec.
+
+	functional-tests: Add missing var in meson build
+
+	functional-tests: Various Autotools fixes
+
+	functional-tests: Skip broken tests
+	I'd love to fix these, but right now my priority is getting the ones
+	that do work running on every commit.
+
+	functional-tests: Some cleanups of writeback tests
+	These work better than before, but still not well enough yet.
+
+	functional-tests: Reduce noise on failed extractor tests
+
+	functional-tests: Fix extractor tests when TRACKER_VERBOSITY > 0
+
+	functional-tests: Fix await_property_change()
+	We were only counting inserts as property changes, but deletions
+	should equally count.
+
+	This fixes one of the FTS tests which has been broken since forever.
+
+	functional-tests: Isolate the test data for each miner test
+	Previously all tests would share one data directory, which obviously
+	broke when we started running the tests in parallel with Meson.
+
+	functional-tests/311-fts-file-operations: Skip failing test
+	This one already had a FIXME note.
+
+	functional-tests/311-fts-file-operations.py: Reduce sleep time
+	We possibly can't remove this altogether, but 5 seconds is a long time.
+
+	functional-tests/310-fts-basic.py: Fix syntax error
+
+	functional-tests/310-fts-basic.py: Skip failing test
+	There seems to be an issue here, but I can't reproduce it outside the
+	testcase right now.
+
+	functional-tests/310-fts-basic.py: Remove test that makes no sense
+	This test expects content from multiple files, but the files aren't
+	created anywhere so it unsurpringly fails.
+
+	functional-tests: Reduce graphupdated-delay during miner tests
+	The Tracker Store notifies all of its clients about changes in the
+	store using the GraphUpdated signal. This can contain a lot of data
+	and so to avoid flooding the D-Bus connection it is rate limited to
+	one per 1000ms.
+
+	The miner tests spend a lot of time waiting for updates to happen,
+	so this 1000ms timeout causes a big slowdown. Reducing it to 100ms
+	causes the 310-fts-basic.py test to run in 30 seconds on my machine
+	where previously it took 50 seconds.
+
+	functional-tests: Split 310-fts test into 3 parts
+	This test takes a long time, so to provide better feedback and to avoid
+	timeouts let's split it into 3.
+
+	functional-tests: Add DATADIR to configuration module
+	Miner tests need these to locate the stopwords from the 'tracker' package.
+
+	functional-tests: Delete some dead code
+
+	functional-tests: Avoid crash on error when TRACKER_TESTS_VERBOSE=1
+
+	functional-tests: Remove music file for autotools too
+	This is a fixup for 90be9aa666eae940146abd367d35956172f32d94
+
+	meson: Fix dependency for libgrss
+
+	miners/fs: writeback_tasks table needs to ref its contents
+	This avoids critical errors like the following when writeback is running:
+
+	    (tracker-miner-fs:9195): GLib-GIO-CRITICAL **: g_file_equal: assertion 'G_IS_FILE (file1)' failed
+
+	The issue was that the GFile instances were being unreffed elsewhere and
+	invalidated, even though they still had entries in writeback_tasks.
+
+	miners/fs: Be prepared for UPower failing to initialize
+	This reduces the amount of warnings that we output when something goes
+	wrong at runtime with UPower. I don't think it fixes any actual crash.
+
+2018-07-19  Milo Casagrande  <milo@ubuntu.com>
+
+	Update Italian translation
+
+2018-07-18  Anders Jonsson  <anders.jonsson@norsjovallen.se>
+
+	Update Swedish translation
+
+2018-07-17  Daniel Șerbănescu  <daniel@serbanescu.dk>
+
+	Update Romanian translation
+
+2018-07-17  Piotr Drąg  <piotrdrag@gmail.com>
+
+	Update Polish translation
+
+2018-07-17  Sam Thursfield  <sam@afuera.me.uk>
+
+	Correct typo jsonld -> json-ld
+	Fixes https://gitlab.gnome.org/GNOME/tracker-miners/issues/9
+
+2018-07-16  Piotr Drąg  <piotrdrag@gmail.com>
+
+	Update Polish translation
+
+2018-07-16  Sam Thursfield  <sam@afuera.me.uk>
+
+	Merge branch 'sam/extract-jsonld' into 'master'
+	Rewrite tracker-extract functional tests to use JSON-LD
+
+	See merge request GNOME/tracker-miners!3
+
+	ci: Remove duplicated configure line
+
+	TMP: PEBCAK
+
+	TMP: Show wtf autotools is doing
+
+	autotools: Depend on latest (unreleased) tracker.git
+	We now depend on the JSON-LD support in TrackerResource that is in
+	master.
+
+	Merge branch 'sam/no-extract-rules-segfault' into 'master'
+	Avoid segfault when there are no extract .rule files discovered
+
+	See merge request GNOME/tracker-miners!7
+
+	Avoid segfault when there are no extract .rule files discovered
+	This situation is unusual but not necessarily an error, and we should
+	definitely not segfault.
+
+	First reported at https://gitlab.gnome.org/GNOME/tracker-miners/issues/7
+
+	functional-tests: Remove Jazz_Audio_OPLs0 test
+	This file is encrypted and seems to require some proprietary software
+	to decode it.
+
+	functional-tests: Rewrite tracker-extract tests to parse JSON-LD output
+	These tests have been broken for about 2 years (since the TrackerResource
+	work landed and changed the output generated by `tracker-extract
+	--file`).
+
+	In this commit they are reworked with a focus on using JSON-LD rather
+	than doing any custom parsing of SPARQL. The test description files are
+	now JSON too rather than .ini format, which is not stricty needed but
+	should make the code a lot simpler
+
+	The failure messages could still be improved in many cases, help is
+	welcome here!
+
+	meson: Rework how 400-extractor-metadata is run
+	We now create a separate test() instance corresponding to each of the
+	test cases, which were previously treated as one single test.
+
+	This allows running only one of the tests by doing something like
+	`meson test functional/extract/images/roi.expected.json`, which is
+	useful for debugging.
+
+	tracker-extract: Add support for outputting resources as JSON-LD
+	This depends on https://gitlab.gnome.org/GNOME/tracker/merge_requests/3
+
+	meson: Depend on latest (as yet unreleased) tracker.git
+	We now depend on the JSON-LD support in TrackerResource that is in
+	master.
+
+	libtracker-extract: Fix an error inserting location data
+	We were checking the wrong variable to see if it was NULL, leading
+	to errors like this in some cases:
+
+	    tracker_resource_set_string: NULL is not a valid value.
+
+	This was spotted in the functional/extract/images/test-image-1.expected.json
+	test case.
+
+	tracker-extract: Fix bad check in GIF extractor
+	This fixes the following errors from tracker-extract:
+
+	    tracker_extract_new_contact: assertion 'fullname != NULL' failed
+	    tracker_resource_add_relation: NULL is not a valid value.
+	    g_object_unref: assertion 'G_IS_OBJECT (object)' failed
+
+	Merge branch 'sam/ci-custom-base-image' into 'master'
+	ci: Use a custom base image with packages we need preinstalled
+
+	Closes tracker#17
+
+	See merge request GNOME/tracker-miners!6
+
+	ci: Use a custom base image with packages we need preinstalled
+	The images are built from this project:
+	https://gitlab.gnome.org/samthursfield/tracker-oci-images
+
+2018-07-15  Sam Thursfield  <sam@afuera.me.uk>
+
+	Merge branch 'sam/meson-test-fixes' into 'master'
+	Clean up how tests are defined in Meson
+
+	See merge request GNOME/tracker-miners!5
+
+	meson: Rework how tests are defined
+	The list of tests is now at the top of each meson.build file, so it's
+	harder to miss them out by mistake.
+
+	Corresponds with https://gitlab.gnome.org/GNOME/tracker/merge_requests/5
+
+	tests/libtracker-extract: Standardize test filenames
+
+	meson: Actually honour the guarantee_metadata option
+	We weren't writing GUARANTEE_METADATA into config.h, so this option was
+	never being enabled.
+
+	ci: Show logs for failed tests in the Autotools build
+
+2018-07-11  Sam Thursfield  <sam@afuera.me.uk>
+
+	Merge branch 'sam/ci' into 'master'
+	Enable GitLab CI
+
+	See merge request GNOME/tracker-miners!4
+
+2018-07-02  Sam Thursfield  <sam@afuera.me.uk>
+
+	Merge branch 'wip/piotrdrag/index-gettext' into 'master'
+	tracker-miner-fs: Remove .po from ignored-files
+
+	See merge request GNOME/tracker-miners!1
+
+	Enable GitLab CI
+	This tests that tracker-miners can be built from source using Autotools
+	and Meson, and that all of the unit tests run successfully.
+
+	There are various improvements that could be made:
+
+	  * Pre-create a Docker image with the build dependencies installed, so
+	    that we don't wait for `dnf` on every build.
+	  * Fix the functional tests and enable them for every build.
+	  * Remove the Autotools build system altogether and use Meson for
+	    everything \o/
+
+	functional-tests: Re-add 310-fts-indexing test
+	This was removed in 63af0cfe2dc3642d46f341 as part of the
+	tracker/tracker-miners split, but seems it ended up in neither
+	repo. It belongs here as it is a test for tracker-miner-fs.
+
+	functional-tests: Show stderr output when a subprocess fails
+	Previously it was necessary to set TRACKER_TESTS_VERBOSE in the
+	environment in order to see this output, but there's pretty much
+	never a situation where you don't want to see stderr when an error
+	occurs.
+
+	functional-tests: Return correct (non-zero) exit code if subprocess crashes
+
+	tests: Fix data file path that we pass into tests
+	Fixes failures of tracker-dbus-test and tracker-file-utils-test.
+
+	meson: Clarify and simplify the check for tracker-store
+
+	libtracker-miners-common: Improve error when domain rule isn't found
+	Before:
+
+	    GLib-CRITICAL **: g_key_file_load_from_file: assertion 'file != NULL' failed
+
+	    CRITICAL **: Could not load domain ontology '(null)': Key file does not have group “DomainOntology”
+
+	After:
+
+	    ERROR **: Unable to find default domain ontology rule /usr/local/share/tracker/domain-ontologies/default.rule
+
+2018-07-02  Carlos Garnacho  <carlosg@gnome.org>
+
+	libtracker*: Lower g_message()s to g_debug()
+	This is library code, so let's use g_debug() which obeys G_MESSAGES_DEBUG,
+	instead of g_message() which shall be printed unless there is an special
+	log handler that filters those out.
+	This code may run on 3rd party code, where we can't trust we'll have
+	a log handler that catches those from going to stdout.
+
+	Copied from tracker.git commit d783996627ee7b0ee8eec4d416955aeb4dc94a8.
+
+2018-07-02  Sam Thursfield  <sam@afuera.me.uk>
+
+	Fix API version annotation, we are on 2.0 now.
+	This library is private so nothing should be affected by this change in
+	practice.
+
+	functional-tests: Remove test-ontologies
+	These are only needed in tracker.git, not here.
+
+2018-07-01  Sam Thursfield  <sam@afuera.me.uk>
+
+	tracker-extract: Fail if invalid commandline options are specified
+	We were ignoring the error from g_option_context_parse() here, which
+	would lead to weird behaviour further on.
+
+	meson: Fix build when tracker.git is a subproject of tracker-miners
+	This was a regression introduced in 2dd679b01597554abb46048c72a07.
+
+	functional-tests: Remove unneeded import
+
+	Make functional-tests work with the Meson build system
+	Based on https://gitlab.gnome.org/GNOME/tracker/commit/9599f0585b572e3a020f
+
+	functional-tests: Remove tests which belong in tracker.git
+
+2018-07-01  Piotr Drąg  <piotrdrag@gmail.com>
+
+	tracker-miner-fs: Remove .po from ignored-files
+	Searching for, searching in, and recently also starring gettext
+	translation files are all parts of the everyday workflow of every
+	GNOME (and not only GNOME) translator.
+
+	https://bugzilla.gnome.org/show_bug.cgi?id=794498
+
 2018-06-25  Carlos Garnacho  <carlosg@gnome.org>
 
 	Release 2.0.5

@@ -1,3 +1,14 @@
+NEW in 2.1.0 - 2018-07-23
+=========================
+
+  * tests: Many updates and fixes to functional tests
+  * tracker-extract: Better infrastructure for tests, based on JSON-LD
+  * tracker-miner-fs: Restart tracker extract from the right domain
+  * tracker-extract: Persistently avoid files that trigger recoverable
+    errors, to avoid log spamming on restarts.
+
+Translations: de, es, it, pl, pt_BR, ro, sv
+
 NEW in 2.0.5 - 2018-06-25
 =========================
 
