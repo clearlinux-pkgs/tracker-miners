@@ -1,3 +1,15 @@
+NEW in 2.1.1 - 2018-08-15
+=========================
+
+  * tracker-miner-fs: Ignore mercurial repositories
+  * build: Fix build with -Werror=format-security
+  * tracker-extract: Ensure metadata strings are UTF-8 in JPEG/PNG extractors
+  * tracker-extract: Do not add named destinations to PDF TOCs
+  * tracker-extract: Ignore XMP image metadata on PDFs
+  * tracker-extract: Fix ISO 8601 date string generation on gstreamer extractor
+
+Translations: cs, el, fr, fur, hu, lt, sl, tr, zh_TW
+
 NEW in 2.1.0 - 2018-07-23
 =========================
 

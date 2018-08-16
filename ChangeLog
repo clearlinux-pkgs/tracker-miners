@@ -1,3 +1,153 @@
+2018-08-15  Carlos Garnacho  <carlosg@gnome.org>
+
+	Release 2.1.1
+
+	tracker-extract-gstreamer: Use common date extraction for album/disc URNs
+	Instead of looking up directly GST_TAG_DATE_TIME, use the same extraction
+	paths than nie:contentCreated. It might fall back into GST_TAG_DATE, which
+	may be a mismatch.
+
+	tracker-extract-gstreamer: Move date/time extraction into separate func
+
+	libtracker-extract: Refactor album+disc uri generation bits
+	The URN is very similar, just prefix and suffix differ. Seems nicer to
+	compose the shared bits at once.
+
+	tracker-extract: Drop other NMM ontology bits from PDF extractor
+	Commit dd5f39ab9f fixed nfo:orientation, but the other nmm:* fields
+	as extracted from XMP data can cause the same problems as the PDF
+	document is not a nmm:Photo.
+
+	Related: tracker#21
+
+2018-08-15  Marek Cernocky  <marek_cernocky@conel.cz>
+
+	Updated Czech translation
+
+2018-08-15  Balázs Meskó  <meskobalazs@fedoraproject.org>
+
+	Update Hungarian translation
+
+2018-08-14  Efstathios Iosifidis  <eiosifidis@gnome.org>
+
+	Update Greek translation
+
+2018-08-12  Emin Tufan Çetin  <etcetin@gmail.com>
+
+	Update Turkish translation
+
+2018-08-12  Yi-Jyun Pan  <pan93412@gmail.com>
+
+	Update Chinese (Taiwan) translation
+
+2018-08-09  Charles Monzat  <charles.monzat@numericable.fr>
+
+	Update French translation
+
+2018-08-08  Fabio Tomat  <f.t.public@gmail.com>
+
+	Update Friulian translation
+
+2018-08-06  Sam Thursfield  <sam@afuera.me.uk>
+
+	Merge branch 'sam/pdf-orientation' into 'master'
+	tracker-extract-pdf: Don't try to set nfo:orientation property
+
+	Closes tracker#21
+
+	See merge request GNOME/tracker-miners!14
+
+	Merge branch 'wip/carlosg/gstreamer-date-timezones' into 'master'
+	tracker-extract-gstreamer: Fix iso 8601 string generation in negative TZs
+
+	Closes tracker#22
+
+	See merge request GNOME/tracker-miners!15
+
+2018-08-04  Carlos Garnacho  <carlosg@gnome.org>
+
+	tracker-extract-gstreamer: Fix iso 8601 string generation in negative TZs
+	We try to format the timezone hour difference with %02d, however for
+	negative numbers it will contain just eg. "-4", which is not the expected
+	behavior.
+
+	So, take the negative sign out of the integer, and add it separately
+	just like we do for the explicit '+'. This makes the %02d bit actually
+	correct, so the timezone bit starts with "-04".
+
+	https://gitlab.gnome.org/GNOME/tracker/issues/22
+
+	Closes: tracker#22
+
+2018-08-03  Sam Thursfield  <sam@afuera.me.uk>
+
+	tracker-extract-pdf: Don't try to set nfo:orientation property
+	The nfo:orientation property can only be set on nfo:Image resources, not
+	nfo:PaginatedTextDocument resources.
+
+	Fixes https://gitlab.gnome.org/GNOME/tracker/issues/21
+
+	Merge branch 'wip/carlosg/extraction-warnings' into 'master'
+	Extraction warning fixes
+
+	Closes #12 and #13
+
+	See merge request GNOME/tracker-miners!13
+
+2018-08-03  Matej Urbančič  <mateju@svn.gnome.org>
+
+	Added Slovenian translation
+
+2018-08-03  Carlos Garnacho  <carlosg@gnome.org>
+
+	tracker-extract-pdf: Ignore destination of "goto dest" actions on TOC
+	Whatever PopplerDest.named_dest is, it's not a real string. This triggers
+	UTF-8 warnings on any PDF file with such actions.
+
+	https://gitlab.gnome.org/GNOME/tracker-miners/issues/12
+
+	Closes: #12
+
+	tracker-extract-png: Ensure UTF8-ness of metadata strings
+	Some image metadata formats (Exif, Iptc) don't have encoding
+	guarantees, so do our best here.
+
+	https://gitlab.gnome.org/GNOME/tracker-miners/issues/13
+
+	Closes: #13
+
+	tracker-extract-jpeg: Ensure UTF8-ness of metadata strings
+	Some image metadata formats (Exif, Iptc) don't have encoding
+	guarantees, so do our best here.
+
+	https://gitlab.gnome.org/GNOME/tracker-miners/issues/13
+
+	Closes: #13
+
+2018-07-29  Sam Thursfield  <sam@afuera.me.uk>
+
+	Merge branch 'wip/kalev/format-security' into 'master'
+	miner-fs: Fix the build with -Werror=format-security
+
+	See merge request GNOME/tracker-miners!11
+
+	Merge branch 'master' into 'master'
+	tracker-miner-fs: Ignore Mercurial repositories by default
+
+	See merge request GNOME/tracker-miners!12
+
+2018-07-28  Marco Castelluccio  <mcastelluccio@mozilla.com>
+
+	tracker-miner-fs: Ignore Mercurial repositories by default
+
+2018-07-27  Aurimas Černius  <aurisc4@gmail.com>
+
+	Updated Lithuanian translation
+
+2018-07-25  Kalev Lember  <klember@redhat.com>
+
+	miner-fs: Fix the build with -Werror=format-security
+
 2018-07-23  Carlos Garnacho  <carlosg@gnome.org>
 
 	Release 2.1.0
