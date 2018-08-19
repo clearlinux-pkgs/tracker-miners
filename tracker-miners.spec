@@ -4,7 +4,7 @@
 #
 Name     : tracker-miners
 Version  : 2.1.1
-Release  : 12
+Release  : 13
 URL      : https://download.gnome.org/sources/tracker-miners/2.1/tracker-miners-2.1.1.tar.xz
 Source0  : https://download.gnome.org/sources/tracker-miners/2.1/tracker-miners-2.1.1.tar.xz
 Summary  : No detailed summary available
@@ -39,6 +39,7 @@ BuildRequires : pkgconfig(libosinfo-1.0)
 BuildRequires : pkgconfig(libseccomp)
 BuildRequires : pkgconfig(libxml-2.0)
 BuildRequires : pkgconfig(poppler-glib)
+BuildRequires : pkgconfig(taglib_c)
 BuildRequires : pkgconfig(totem-plparser)
 BuildRequires : pkgconfig(upower-glib)
 BuildRequires : pkgconfig(vorbisfile)
@@ -120,7 +121,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1534427834
+export SOURCE_DATE_EPOCH=1534700717
 %configure --disable-static --disable-schemas-compile --disable-journal --disable-libstemmer --disable-upower --disable-hal --disable-libexif --disable-libiptcdata --disable-exempi --disable-extract --disable-tracker-writeback --disable-miner-apps --disable-miner-rss --disable-taglib --disable-enca --disable-icu-charset-detection --disable-libxml2 --disable-unzip-ps-gz-files --disable-poppler --disable-libgxps --disable-libgsf --disable-libosinfo --disable-libgif --disable-libjpeg --disable-libtiff --disable-libpng --disable-libvorbis --disable-libflac --disable-libcue --disable-abiword --disable-dvi --disable-mp3 --disable-ps --disable-text --disable-icon --disable-playlist --disable-guarantee-metadata
 make  %{?_smp_mflags}
 
@@ -132,7 +133,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1534427834
+export SOURCE_DATE_EPOCH=1534700717
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/tracker-miners
 cp COPYING.GPL %{buildroot}/usr/share/doc/tracker-miners/COPYING.GPL
