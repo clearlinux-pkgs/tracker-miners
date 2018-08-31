@@ -1,3 +1,108 @@
+2018-08-30  Carlos Garnacho  <carlosg@gnome.org>
+
+	Release 2.1.3
+
+	miners: Unbreak domain ontology owner name watch
+	Commit ab29a9cd6af got it wrong. This is not a tracker-store watch,
+	but a watch on the domain ontology owner. It should only apply when
+	there is one such.
+
+	Release 2.1.2
+
+	tests: Add missing shellscript to EXTRA_DIST
+	Closes: https://gitlab.gnome.org/GNOME/tracker-miners/issues/18
+
+	miners: Fix tracker-store DBus name watch along miners
+
+2018-08-29  Fran Dieguez  <frandieguez@gnome.org>
+
+	Update Galician translation
+
+2018-08-29  Sam Thursfield  <sam@afuera.me.uk>
+
+	Merge branch 'meson-no-bad-link' into 'master'
+	meson: Do not symlink disabled services
+
+	See merge request GNOME/tracker-miners!19
+
+2018-08-28  Seong-ho Cho  <shcho@gnome.org>
+
+	Update Korean translation
+
+2018-08-26  Carlos Garnacho  <carlosg@gnome.org>
+
+	tracker-extract: Use tracker_resource_set_* with single-valued properties
+	The tracker_resource_add_* API does not delete the previous property value,
+	so may result in constraint errors if these values happen to change (some
+	are more likely than others).
+
+	This commit fixes this entire source of bugs en-masse, the affected
+	properties were:
+
+	- nmm:albumDiscAlbum
+	- nfo:genre in GStreamer extractor
+	- nie:license in HTML extractor
+	- nco:publisher and nfo:equipment in JPEG extractor
+	- nfo:equipment in RAW extractor
+
+	libtracker-extract: Use tracker_resource_set_uri() with rdf:type
+	Dealing with it as a string produces the wrong SPARQL:
+	_:foo rdf:type "rdfs:Resource"
+
+	tracker-extract: slo:location has limited cardinality
+	Using tracker_resource_set_relation() ensures we respect it.
+
+	Closes: #20
+
+2018-08-26  Carlos Garnacho  <mrgarnacho@gmail.com>
+
+	Merge branch 'wip/carlosg/issue-21' into 'master'
+	libtracker-extract: Ensure utf8ness in TrackerResource helpers
+
+	Closes #21
+
+	See merge request GNOME/tracker-miners!21
+
+2018-08-26  Kukuh Syafaat  <kukuhsyafaat@gnome.org>
+
+	Update Indonesian translation
+
+2018-08-24  Sam Thursfield  <sam@afuera.me.uk>
+
+	Merge branch 'fix-meson_build-typos' into 'master'
+	Fix typos in meson scripts
+
+	See merge request GNOME/tracker-miners!20
+
+2018-08-24  Luciano Santos  <luc14n0@linuxmail.org>
+
+	Fix typos in meson scripts
+
+2018-08-24  Carlos Garnacho  <carlosg@gnome.org>
+
+	libtracker-extract: Ensure utf8ness in TrackerResource helpers
+	In the same vein than commit 98136e118f, we can't rely on data from
+	EXIF/IPTC metadata being UTF-8. Prepare the helpers to handle this.
+
+	Closes: #21
+
+2018-08-18  Jan Tojnar  <jtojnar@gmail.com>
+
+	meson: Do not symlink disabled services
+	https://bugzilla.gnome.org/show_bug.cgi?id=796145
+
+2018-08-16  Sam Thursfield  <sam@afuera.me.uk>
+
+	Merge branch 'sam/core-subproject-option' into 'master'
+	meson: Turn core-as-subproject into an explicit option
+
+	See merge request GNOME/tracker-miners!18
+
+	Merge branch 'sam/domain-rules-outside-usr' into 'master'
+	Allow use of domain rules that aren't installed into /usr
+
+	See merge request GNOME/tracker-miners!17
+
 2018-08-15  Carlos Garnacho  <carlosg@gnome.org>
 
 	Release 2.1.1
@@ -39,6 +144,50 @@
 2018-08-12  Yi-Jyun Pan  <pan93412@gmail.com>
 
 	Update Chinese (Taiwan) translation
+
+2018-08-12  Sam Thursfield  <sam@afuera.me.uk>
+
+	meson: Turn core-as-subproject into an explicit option
+	I added a feature to tracker-miners that it could automatically build
+	tracker core as a subproject if the system-provided version was too old.
+
+	This is a nice feature but it's not so nice that it happens
+	automatically dependent on the version requirements in meson.build.
+	Better to turn it into an explicit option that developers can enable
+	whenever they want.
+
+2018-08-11  Sam Thursfield  <sam@afuera.me.uk>
+
+	Allow use of domain rules that aren't installed into /usr
+	Currently Tracker domain rules must be installed inside Tracker's data
+	directory (usually /usr/share/tracker). This is limiting as it means
+	only system packages can add them. A program installed into /opt is
+	unable to use a custom domain, for example. Since Tracker is implemented
+	as a system of daemons, it's not particularly straight forward to work
+	around this by setting XDG_DATA_DIRS= to point somewhere non-standard
+	either.
+
+	This patch removes this restriction in a simple way: it allows users to
+	pass a full path to the domain rule, rather than just the base name.
+
+	tracker_domain_ontology_get_domain() should return only the domain name
+	We should be consistent about what the name of a Tracker domain actually
+	is. In the domain rule we specify Domain=org.freedesktop (for the
+	default rule) or Domain=org.example.App (for a custom domain). But
+	internally tracker_domain_ontology_get_domain() would return
+	org.freedesktop.Tracker1 or org.example.App.Tracker1, i.e. the domain
+	name now has '.Tracker1' appended.
+
+	This does make sense in most cases, but it means there's no way to get
+	the actual name of the domain from a TrackerDomainOntology object. This
+	commit changes the existing function to not append '.Tracker1' in the
+	value it returns, which means that function can now be used to get the
+	base name of the domain. The assumption is that callers are normally
+	appending stuff to this base name anyway so it's not much extra effect
+	to also append the '.Tracker1' component if needed.
+
+	libtracker-common is internal to Tracker so this doesn't constitute a
+	public API break.
 
 2018-08-09  Charles Monzat  <charles.monzat@numericable.fr>
 
