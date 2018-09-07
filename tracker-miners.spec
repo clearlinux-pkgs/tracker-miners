@@ -4,7 +4,7 @@
 #
 Name     : tracker-miners
 Version  : 2.1.4
-Release  : 15
+Release  : 16
 URL      : https://download.gnome.org/sources/tracker-miners/2.1/tracker-miners-2.1.4.tar.xz
 Source0  : https://download.gnome.org/sources/tracker-miners/2.1/tracker-miners-2.1.4.tar.xz
 Summary  : No detailed summary available
@@ -121,7 +121,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1536124730
+export SOURCE_DATE_EPOCH=1536316904
 %configure --disable-static --disable-schemas-compile --disable-journal --disable-libstemmer --disable-upower --disable-hal --disable-libexif --disable-libiptcdata --disable-exempi --disable-extract --disable-tracker-writeback --disable-miner-apps --disable-miner-rss --disable-taglib --disable-enca --disable-icu-charset-detection --disable-libxml2 --disable-unzip-ps-gz-files --disable-poppler --disable-libgxps --disable-libgsf --disable-libosinfo --disable-libgif --disable-libjpeg --disable-libtiff --disable-libpng --disable-libvorbis --disable-libflac --disable-libcue --disable-abiword --disable-dvi --disable-mp3 --disable-ps --disable-text --disable-icon --disable-playlist --disable-guarantee-metadata
 make  %{?_smp_mflags}
 
@@ -133,7 +133,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1536124730
+export SOURCE_DATE_EPOCH=1536316904
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/tracker-miners
 cp COPYING.GPL %{buildroot}/usr/share/doc/tracker-miners/COPYING.GPL
@@ -141,6 +141,9 @@ cp COPYING.LGPL %{buildroot}/usr/share/doc/tracker-miners/COPYING.LGPL
 cp src/libtracker-miners-common/COPYING.LIB %{buildroot}/usr/share/doc/tracker-miners/src_libtracker-miners-common_COPYING.LIB
 %make_install
 %find_lang tracker-miners
+## install_append content
+mv %{buildroot}%{_sysconfdir}/xdg %{buildroot}%{_datadir}/.
+## install_append end
 
 %files
 %defattr(-,root,root,-)
@@ -173,6 +176,8 @@ cp src/libtracker-miners-common/COPYING.LIB %{buildroot}/usr/share/doc/tracker-m
 /usr/share/tracker-miners/extract-rules/90-gstreamer-video-generic.rule
 /usr/share/tracker/miners/org.freedesktop.Tracker1.Miner.Extract.service
 /usr/share/tracker/miners/org.freedesktop.Tracker1.Miner.Files.service
+/usr/share/xdg/autostart/tracker-extract.desktop
+/usr/share/xdg/autostart/tracker-miner-fs.desktop
 
 %files lib
 %defattr(-,root,root,-)
