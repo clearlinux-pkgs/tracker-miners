@@ -1,3 +1,26 @@
+2018-09-26  Carlos Garnacho  <carlosg@gnome.org>
+
+	Release 2.1.5
+
+	libtracker-extract: Guarantee that titles are UTF-8
+	The tracker_guarantee_resource_title_from_file() function may
+	possibly accept non-utf8 from extractors. While the file display
+	name fallbacks are utf8 safe, the given string should be checked.
+
+2018-09-09  Carlos Garnacho  <carlosg@gnome.org>
+
+	tracker-extract-iso: Plug leaks
+
+	tracker-extract-gstreamer: Plug leak
+
+	tracker-miner-fs: Plug leak
+
+	libtracker-miners-common: Plug leak
+
+2018-09-06  Stas Solovey  <whats_up@tut.by>
+
+	Update Russian translation
+
 2018-09-04  Carlos Garnacho  <carlosg@gnome.org>
 
 	Release 2.1.4
