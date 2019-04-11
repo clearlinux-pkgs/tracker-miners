@@ -1,0 +1,11 @@
+2.2.1
+gstreamer-dev
+intltool
+libseccomp-dev
+pkgconfig(gexiv2)
+pkgconfig(gstreamer-1.0)
+pkgconfig(gstreamer-pbutils-1.0)
+pkgconfig(gstreamer-tag-1.0)
+pkgconfig(libseccomp)
+pkgconfig(upower-glib)
+upower-dev

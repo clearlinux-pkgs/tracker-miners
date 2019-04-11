@@ -1,10 +1,48 @@
-NEW in 2.1.5 - 2018-09-26
+NEW in 2.2.1 - 2019-03-06
 =========================
 
-  * Fix several leaks
-  * Ensure utf8ness in tracker_guarantee_resource_title_from_file()
+  * Whitelist syscall fadvise64_64
+  * Many fixes to functional tests
+  * Fix failed functional tests being reported as successful
 
-Translations: ru
+Translations: eo, fur, fr, it, ko, lv, nl, ru, sr
+
+NEW in 2.2.0 - 2019-02-20
+=========================
+
+  * Disable guarantee_metadata by default. It was the case on autotools
+  * Stop merging translations to schema files
+  * Test suite improvements
+  * Meson build improvements
+
+Translations: cs, da, de, es, gl, hu, id, lt, pl, pt_BR, ro, sl, sv, tr, zh_TW
+
+  Highlighted changes since 2.1.x:
+  --------------------------------
+
+  * The functionality of tracker-miner-apps has been adopted by
+    tracker-miner-fs/tracker-extract.
+  * All usage of deprecated TrackerSparqlBuilder is gone.
+
+NEW in 2.2.0-alpha2 - 2019-02-06
+================================
+  * Fixes to desktop file indexing
+  * Multiple build and compile warning fixes
+  * Many test improvements and cleanups
+
+Translations: fr
+
+NEW in 2.2.0-alpha1 - 2018-11-13
+================================
+
+  * The functionality of tracker-miner-apps has been adopted by
+    tracker-miner-fs/tracker-extract.
+  * Updated tracker-miner-fs and tracker-miner-rss to use TrackerResource
+  * Support for building through autotools has been removed.
+  * Plugged several leaks
+  * Other many build and code cleanups and fixes
+
+Translations: ru, sk, sr
 
 NEW in 2.1.4 - 2018-09-04
 =========================

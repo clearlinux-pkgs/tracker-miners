@@ -7,12 +7,10 @@ option('extract', type: 'boolean', value: true,
        description: 'Enable the Tracker metadata extractor')
 option('functional_tests', type: 'boolean', value: true,
        description: 'Enable the Tracker functional test suite')
-option('guarantee_metadata', type: 'boolean', value: true,
+option('guarantee_metadata', type: 'boolean', value: false,
        description: 'Set nie:title and nie:contentCreated from filename and mtime if no metadata available')
 option('journal', type: 'boolean', value: true,
        description: 'Enable database journal backup mechanism')
-option('miner_apps', type: 'boolean', value: true,
-       description: 'Enable the Tracker applications miner')
 option('miner_fs', type: 'boolean', value: true,
        description: 'Enable the Tracker filesystem miner')
 option('miner_rss', type: 'boolean', value: true,
@@ -34,6 +32,43 @@ option('text', type: 'boolean', value: 'true',
        description: 'Enable extractor for TXT metadata')
 option('unzip_ps_gz_files', type: 'boolean', value: 'true',
        description: 'Enable extractor for PS.GZ metadata')
+
+option('cue', type: 'feature', value: 'auto',
+       description: 'Support cue sheet parsing')
+option('exif', type: 'feature', value: 'auto',
+       description: 'Support EXIF metadata')
+option('flac', type: 'feature', value: 'auto',
+       description: 'Support extracting metadata from Flac audio')
+option('gif', type: 'feature', value: 'auto',
+       description: 'Support extracting metadata from GIF images')
+option('gsf', type: 'feature', value: 'auto',
+       description: 'Support extracting metadata from MS & Open Office documents')
+option('iptc', type: 'feature', value: 'auto',
+       description: 'Support IPTC photo metadata')
+option('iso', type: 'feature', value: 'auto',
+       description: 'Support ISO image parsing')
+option('jpeg', type: 'feature', value: 'auto',
+       description: 'Support extracting metadata from JPEG images')
+option('pdf', type: 'feature', value: 'auto',
+       description: 'Support extracting metadata from PDF documents')
+option('playlist', type: 'feature', value: 'auto',
+       description: 'Support extracting metadata from playlists (w/ Totem)')
+option('png', type: 'feature', value: 'auto',
+       description: 'Support extracting metadata from PNG images')
+option('raw', type: 'feature', value: 'auto',
+       description: 'Support extracting metadata from RAW photos')
+option('taglib', type: 'feature', value: 'auto',
+       description: 'Support writeback for audio files using Taglib')
+option('tiff', type: 'feature', value: 'auto',
+       description: 'Support extracting metadata from TIFF images')
+option('vorbis', type: 'feature', value: 'auto',
+       description: 'Support extracting metadata from Vorbis (ogg/etc) files')
+option('xml', type: 'feature', value: 'auto',
+       description: 'Support extracting metadata from XML and HTML documents')
+option('xmp', type: 'feature', value: 'auto',
+       description: 'Support XMP metadata')
+option('xps', type: 'feature', value: 'auto',
+       description: 'Support extracting metadata from XPS documents')
 
 option('battery_detection', type: 'combo', choices: ['auto', 'hal', 'upower', 'none'], value: 'auto',
        description: 'Enable upower or HAL for battery/mains power detection')
