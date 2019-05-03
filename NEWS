@@ -1,3 +1,14 @@
+NEW in 2.2.2 - 2019-05-02
+=========================
+
+  * Multiple leak fixes
+  * Functional tests now use python3
+  * Fix text extractor handling of non-existent files
+  * Fix indexing of tracks in FLAC files
+  * Added new tests for file formats
+
+Translations: hr
+
 NEW in 2.2.1 - 2019-03-06
 =========================
 

@@ -4,8 +4,6 @@ enca
 gupnp-dlna-2.0
 gupnp-dlna-gst-2.0
 libavcodec
-libavformat
-libavutil
 libcue
 libgsf-1
 libgxps
