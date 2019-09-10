@@ -57,8 +57,6 @@ option('png', type: 'feature', value: 'auto',
        description: 'Support extracting metadata from PNG images')
 option('raw', type: 'feature', value: 'auto',
        description: 'Support extracting metadata from RAW photos')
-option('taglib', type: 'feature', value: 'auto',
-       description: 'Support writeback for audio files using Taglib')
 option('tiff', type: 'feature', value: 'auto',
        description: 'Support extracting metadata from TIFF images')
 option('vorbis', type: 'feature', value: 'auto',

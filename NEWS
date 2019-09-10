@@ -1,3 +1,36 @@
+NEW in 2.3.0 - 2019-09-09
+=========================
+
+  Highlighted changes since 2.2.x:
+  --------------------------------
+  * Support for reading musicbrainz tags from multiple audio formats
+
+NEW in 2.2.99.1 - 2019-09-05
+============================
+
+  * The ~/Downloads folder is now indexed non-recursively by default.
+      - This reduces the risk of Tracker unnecessarily crawling large
+        directories of source code or video game data.
+      - If users are storing data such as music or photos in subfolders of the
+        Downloads folder, they will need to move it to an appropriate place
+        (~/Music, ~/Pictures, etc.) so that it is still indexed.
+
+  * Dispose TrackerResource objects before unref
+  * Fixes in Musicbrainz metadata extraction
+
+Translations: ca, eu
+
+NEW in 2.2.99.0 - 2019-08-07
+============================
+
+  * Support for reading Musicbrainz metadata from audio files.
+  * Tracker Writeback now uses GStreamer to write metadata to audio files,
+    instead of depending on taglib directly.
+  * Directories will now be ignored if they contain a file named `.nomedia`.
+    A file named `.trackerignore` has the same effect, but the `.nomedia` file
+    brings us in line with Android.
+  * Removed obsolete 'max-media-art-width' setting.
+
 NEW in 2.2.2 - 2019-05-02
 =========================
 

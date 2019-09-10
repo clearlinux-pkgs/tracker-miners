@@ -1,9 +1,10 @@
-2.2.2
+2.3.0
 gstreamer-dev
 intltool
 libseccomp-dev
 pkgconfig(gexiv2)
 pkgconfig(gstreamer-1.0)
+pkgconfig(gstreamer-audio-1.0)
 pkgconfig(gstreamer-pbutils-1.0)
 pkgconfig(gstreamer-tag-1.0)
 pkgconfig(libavformat)
