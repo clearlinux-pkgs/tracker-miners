@@ -1,3 +1,12 @@
+NEW in 2.3.1 - 2019-10-12
+=========================
+
+  * Improved .odt extraction, fixing issues with hyphenated words.
+  * OpenBSD: Fixed build (thanks to Antoine Jacoutot)
+  * functional-tests: Fixed a cause of intermittent failures,
+    removed some unused data files.
+  * Minor compiler warning and build system fixes
+
 NEW in 2.3.0 - 2019-09-09
 =========================
 
