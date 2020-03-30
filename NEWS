@@ -1,3 +1,29 @@
+NEW in 2.3.3 - 2020-03-09
+=========================
+
+  * The secure sandbox for tracker-extract now permits clock_nanosleep() calls,
+    fixing crashes on some systems.
+  * Miners now set nice/scheduler priorities in a way that placates glib. The
+    sched_setscheduler syscall is as a side effect also allowed by the
+    tracker-extract sandbox.
+
+Translations: ja
+
+NEW in 2.3.2 - 2020-02-18
+=========================
+
+  * Blocked parsing of image/x-dds image files, which were previously
+    being passed to GStreamer and triggering system lockups for some people
+  * Fixed incorrect MIME type for .raw images, which were previously
+    being passed to GStreamer and triggering system lockups for some people
+  * Improved how the MP3 extractor calculates durations of variable bitrate
+    MP3s, which fixes incorrect durations being shown in GNOME Music.
+  * Fixed a bug in the GStreamer writeback module.
+  * Fix race condition that might leave tracker-miner-fs paused after a
+    writeback operation.
+
+Translations: ms
+
 NEW in 2.3.1 - 2019-10-12
 =========================
 
