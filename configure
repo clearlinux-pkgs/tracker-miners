@@ -24,7 +24,6 @@
 -Dpng=disabled
 -Dps=false
 -Draw=enabled
--Dsystemd_user_services=/usr/lib/systemd/user
 -Dtaglib=disabled
 -Dtext=false
 -Dtiff=disabled
@@ -34,3 +33,5 @@
 -Dxml=disabled
 -Dxmp=disabled
 -Dxps=disabled
+-Dman=false
+-Ddocs=false

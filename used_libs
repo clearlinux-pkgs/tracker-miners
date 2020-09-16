@@ -1,4 +1,5 @@
 libc.so.6
+libgcc_s.so.1
 libgexiv2.so.2
 libgio-2.0.so.0
 libglib-2.0.so.0
@@ -6,9 +7,9 @@ libgmodule-2.0.so.0
 libgobject-2.0.so.0
 libgstpbutils-1.0.so.0
 libgstreamer-1.0.so.0
-libicui18n.so.64
+libicui18n.so.67
 libm.so.6
+libnm.so.0
 libpthread.so.0
 libseccomp.so.2
-libtracker-miner-2.0.so.0
-libtracker-sparql-2.0.so.0
+libtracker-sparql-3.0.so.0

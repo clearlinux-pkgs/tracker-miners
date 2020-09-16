@@ -1,23 +1,33 @@
 option('tracker_core', type: 'combo', choices: ['system', 'subproject'], value: 'system',
        description: 'Use the system-installed version of Tracker core libraries, or build our own version as a Meson subproject.')
 
-option('docs', type: 'boolean', value: true,
-       description: 'Enable the documentation')
 option('extract', type: 'boolean', value: true,
        description: 'Enable the Tracker metadata extractor')
 option('functional_tests', type: 'boolean', value: true,
        description: 'Enable the Tracker functional test suite')
 option('guarantee_metadata', type: 'boolean', value: false,
        description: 'Set nie:title and nie:contentCreated from filename and mtime if no metadata available')
-option('journal', type: 'boolean', value: true,
-       description: 'Enable database journal backup mechanism')
+option('man', type: 'boolean', value: true,
+       description: 'Install man pages')
 option('miner_fs', type: 'boolean', value: true,
        description: 'Enable the Tracker filesystem miner')
 option('miner_rss', type: 'boolean', value: true,
        description: 'Enable the Tracker RSS miner')
 option('writeback', type: 'boolean', value: true,
        description: 'Enable Tracker writeback feature')
+option('domain_prefix', type: 'string', value: 'org.freedesktop',
+       description: 'Domain prefix to use, useful for sandboxing')
+option('miner_fs_cache_location', type: 'string', value: '',
+       description: 'Location of the miner cache, only used when domain_prefix is not \'org.freedesktop\'')
+option('default_index_recursive_dirs', type: 'array',
+       value: [ '&DESKTOP', '&DOCUMENTS', '&MUSIC', '&PICTURES', '&VIDEOS' ],
+       description: 'List of directories to index recursively')
+option('default_index_single_dirs', type: 'array',
+       value: [ '$HOME', '&DOWNLOAD' ],
+       description: 'List of directories to index without inspecting subfolders')
 
+option('network_manager', type: 'feature', value: 'auto',
+       description: 'Connection detection through NetworkManager')
 option('abiword', type: 'boolean', value: 'true',
        description: 'Enable extractor for AbiWord files')
 option('dvi', type: 'boolean', value: 'true',
@@ -37,8 +47,6 @@ option('cue', type: 'feature', value: 'auto',
        description: 'Support cue sheet parsing')
 option('exif', type: 'feature', value: 'auto',
        description: 'Support EXIF metadata')
-option('flac', type: 'feature', value: 'auto',
-       description: 'Support extracting metadata from Flac audio')
 option('gif', type: 'feature', value: 'auto',
        description: 'Support extracting metadata from GIF images')
 option('gsf', type: 'feature', value: 'auto',
@@ -59,8 +67,6 @@ option('raw', type: 'feature', value: 'auto',
        description: 'Support extracting metadata from RAW photos')
 option('tiff', type: 'feature', value: 'auto',
        description: 'Support extracting metadata from TIFF images')
-option('vorbis', type: 'feature', value: 'auto',
-       description: 'Support extracting metadata from Vorbis (ogg/etc) files')
 option('xml', type: 'feature', value: 'auto',
        description: 'Support extracting metadata from XML and HTML documents')
 option('xmp', type: 'feature', value: 'auto',
@@ -77,7 +83,9 @@ option('generic_media_extractor', type: 'combo', choices: ['auto', 'gstreamer', 
 option('gstreamer_backend', type: 'combo', choices: ['discoverer', 'gupnp'], value: 'discoverer',
        description: 'When GStreamer is used, this enables one of the (discoverer, gupnp) GStreamer backends')
 
-option('dbus_services', type: 'string', value: '',
-       description: 'Directory to install D-Bus .service files (leave blank to use the value from dbus-1.pc)')
-option('systemd_user_services', type: 'string', value: 'yes',
-       description: 'Directory to install systemd user .service files (or "yes" for default directory, "no" to disable installation)')
+option('dbus_services_dir', type: 'string',
+       description: 'Directory to install D-Bus .service files (value from dbus-1.pc is used by default)')
+option('systemd_user_services', type: 'boolean', value: true,
+       description: 'Whether to install systemd user .service files')
+option('systemd_user_services_dir', type: 'string',
+       description: 'Directory to install systemd user .service files (value from systemd.pc is used by default)')
