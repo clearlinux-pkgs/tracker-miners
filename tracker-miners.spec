@@ -4,7 +4,7 @@
 #
 Name     : tracker-miners
 Version  : 3.0.0
-Release  : 27
+Release  : 28
 URL      : https://download.gnome.org/sources/tracker-miners/3.0/tracker-miners-3.0.0.tar.xz
 Source0  : https://download.gnome.org/sources/tracker-miners/3.0/tracker-miners-3.0.0.tar.xz
 Summary  : A library to develop tracker data miners
