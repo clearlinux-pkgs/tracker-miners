@@ -1,5 +1,4 @@
-3.0.0
-asciidoc
+3.0.1
 gstreamer-dev
 libseccomp-dev
 pkgconfig(gexiv2)

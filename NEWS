@@ -1,3 +1,20 @@
+NEW in 3.0.1 - 2020-10-02
+=========================
+  * Fix moving files and directories leaving stale data
+  * Better handling of faulty SPARQL from tracker-extract
+  * Fix chromaprint tag extraction in gstreamer extractor causing
+    bad SPARQL.
+  * Reference Discourse instead of the mailing list
+  * Forward tracker-extract state
+  * Use specific Meson options to enable debug flags
+  * Fix stop words location when building with system Tracker
+  * Small libtracker-miners-common clean ups
+  * Check for malloc_trim function being available
+  * Fixes for Coverity warnings
+  * Compiler warning fixes
+
+Translations: fr, fur, he, nl, sk
+
 NEW in 3.0.0 - 2020-09-13
 =========================
 
