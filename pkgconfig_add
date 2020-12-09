@@ -1,2 +1,12 @@
 # This file contains additional pkgconfig build requirements that did
 # not get picked up automatically. One name per line, no whitespace.
+gexiv2
+gstreamer-1.0
+gstreamer-audio-1.0
+gstreamer-pbutils-1.0
+gstreamer-tag-1.0
+libavformat
+libavutil
+libnm
+libseccomp
+upower-glib

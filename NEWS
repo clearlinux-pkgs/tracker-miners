@@ -1,3 +1,18 @@
+NEW in 3.0.3 - 2020-12-09
+=========================
+  * Allow newstatat/statat64 syscalls
+  * Brown paper bag release
+
+NEW in 3.0.2 - 2020-12-08
+=========================
+  * Fix sched test under non glibc platforms
+  * Refcount fixes
+  * Avoid the fluiddec gstreamer plugin
+  * Ensure to avoid non-native files in tracker-extract-3
+  * CI fixes
+
+Translations: pt
+
 NEW in 3.0.1 - 2020-10-02
 =========================
   * Fix moving files and directories leaving stale data
