@@ -1,3 +1,12 @@
+NEW in 3.0.4 - 2021-01-10
+=========================
+  * Improve time_t interpretation for negative timestamps
+  * Fix "tracker3 search --folders"
+  * Fix crasher after tracker-miner-fs SPARQL failures
+  * CI fixes
+
+Translations: ro
+
 NEW in 3.0.3 - 2020-12-09
 =========================
   * Allow newstatat/statat64 syscalls
