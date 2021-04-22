@@ -1,26 +1,65 @@
-NEW in 3.0.4 - 2021-01-10
+NEW in 3.1.1 - 2021-04-02
 =========================
-  * Improve time_t interpretation for negative timestamps
+
+  * Block gstreamer nvcodec decoders
+  * Fall back if no modification date is found
+  * Handle new poppler enum value
+  * Be more robust with broken EXIF GPS metadata
+  * Test suite improvements
+
+Translations: en_GB, nl, zh_CN
+
+NEW in 3.1.0 - 2021-03-20
+=========================
+Translations: fr, it
+
+  Highlighted changes since 3.0:
+  * Massive performance improvements to tracker-miner-fs-3
+    - Directory monitoring now is now delegated on a worker
+      thread, to free up the main thread's main context.
+    - Multiple internal refactors to avoid redundant operations
+      while checking for changes across a directory tree, and
+      better clustering when handling those changes.
+    - Use of TrackerBatch for better update performance
+  * Better support for file formats in tracker-extract-3
+    - Support for more game image formats
+
+NEW in 3.1.0.rc - 2021-03-14
+============================
+  * Dispatch monitor events on a private thread
+  * Fix After= usage in systemd service files
+  * Fix compiler warnings
+
+Translations: ca, de, eu, gl, hr, hu, ko, lt, lv, pl, sr, tr
+
+NEW in 3.1.0.beta - 2021-02-14
+==============================
+  * Fix tracker-miner-fs-control-3 stall on shutdown
+  * Improve ellipsizing in CLI tools
+  * Update list of game-related mimetypes
+  * Add disc-generic extractor guessing data for CUE files,
+    supported so far:
+    - Playstation images
+    - Turbografx images
+
+Translations: ca, cs, es, gl, id, pt_BR, ro, sl, sv
+
+NEW in 3.1.0.alpha - 2021-01-10
+===============================
   * Fix "tracker3 search --folders"
-  * Fix crasher after tracker-miner-fs SPARQL failures
-  * CI fixes
+  * Allow "tracker3 search" to look for filenames
+  * Improve "tracker3 info" to show file eligibility if not
+    indexed.
+  * Many performance improvements to tracker-miner-fs-3
+  * Fix systemd unit files to depend on gnome-session
+  * Improve time_t interpretation for negative timestamps
+  * Improvements in detection of removable devices
+  * Drop DVI custom extractor
+  * Fix scheduler test on non-glibc platforms
+  * Memory leak fixes
+  * Documentation improvements
 
-Translations: ro
-
-NEW in 3.0.3 - 2020-12-09
-=========================
-  * Allow newstatat/statat64 syscalls
-  * Brown paper bag release
-
-NEW in 3.0.2 - 2020-12-08
-=========================
-  * Fix sched test under non glibc platforms
-  * Refcount fixes
-  * Avoid the fluiddec gstreamer plugin
-  * Ensure to avoid non-native files in tracker-extract-3
-  * CI fixes
-
-Translations: pt
+Translations: ca, pt, ro, uk
 
 NEW in 3.0.1 - 2020-10-02
 =========================

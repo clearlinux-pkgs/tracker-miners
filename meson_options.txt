@@ -15,6 +15,8 @@ option('miner_rss', type: 'boolean', value: true,
        description: 'Enable the Tracker RSS miner')
 option('writeback', type: 'boolean', value: true,
        description: 'Enable Tracker writeback feature')
+option('seccomp', type: 'boolean', value: true,
+       description: 'Enable seccomp support in Tracker metadata extractor')
 option('domain_prefix', type: 'string', value: 'org.freedesktop',
        description: 'Domain prefix to use, useful for sandboxing')
 option('miner_fs_cache_location', type: 'string', value: '',
@@ -30,8 +32,6 @@ option('network_manager', type: 'feature', value: 'auto',
        description: 'Connection detection through NetworkManager')
 option('abiword', type: 'boolean', value: 'true',
        description: 'Enable extractor for AbiWord files')
-option('dvi', type: 'boolean', value: 'true',
-       description: 'Enable extractor for DVI metadata')
 option('icon', type: 'boolean', value: 'true',
        description: 'Enable extractor for ICO metadata')
 option('mp3', type: 'boolean', value: 'true',
@@ -89,3 +89,5 @@ option('systemd_user_services', type: 'boolean', value: true,
        description: 'Whether to install systemd user .service files')
 option('systemd_user_services_dir', type: 'string',
        description: 'Directory to install systemd user .service files (value from systemd.pc is used by default)')
+option('tests_tap_protocol', type: 'boolean', value: false,
+       description: 'Whether to enable TAP protocol on tests')

@@ -2,7 +2,7 @@
 -Dbattery_detection=none
 -Dcharset_detection=icu
 -Dcue=disabled
--Ddocs=true
+-Ddocs=false
 -Ddvi=false
 -Dexif=disabled
 -Dextract=true
@@ -16,6 +16,7 @@
 -Diso=disabled
 -Djournal=false
 -Djpeg=disabled
+-Dman=false
 -Dminer_fs=true
 -Dminer_rss=false
 -Dmp3=false
@@ -33,5 +34,3 @@
 -Dxml=disabled
 -Dxmp=disabled
 -Dxps=disabled
--Dman=false
--Ddocs=false
