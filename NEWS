@@ -1,3 +1,13 @@
+NEW in 3.1.2 - 2021-06-11
+=========================
+
+  * Fixes to libav extractor
+  * Allow 64bit time syscalls for 32bit systems in seccomp sandbox
+  * Manpage fixes
+  * Build fixes
+
+Translations: ne, zh_TW
+
 NEW in 3.1.1 - 2021-04-02
 =========================
 
