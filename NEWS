@@ -1,12 +1,45 @@
-NEW in 3.1.2 - 2021-06-11
+NEW in 3.2.0 - 2021-09-18
 =========================
+Translations: da, de, en_GB, hr, hu, pl
 
+  Highlighted changes since 3.1:
+  * File creation time is now part of the stored metadata
+  * Show additional information in "tracker3 info"
+
+NEW in 3.2.0.rc - 2021-09-05
+============================
+
+Translations: fi, lt, nl
+
+NEW in 3.2.0.beta - 2021-09-01
+==============================
+  * Save file creation time
+  * Coverity fixes
+  * Fix chaining up of errors after porting to TrackerBatch
+  * Fixes for test flakiness
+  * Avoid falling back to year 0 in extractors
+  * Linking fixes on misc executables
+  * CI improvements
+
+Translations: cs, es, eu, fr, gl, id, kk, ko, pt, pt_BR, ro, ru, sk, sl,
+  sv, tr, zh_TW
+
+NEW in 3.2.0.alpha.1 - 2021-06-12
+=================================
+  * Brown paper bag release
+
+NEW in 3.2.0-alpha - 2021-06-09
+===============================
+  * Test fixes
+  * Remove default limit in "tracker3 search" command
+  * Show additional information in "tracker3 info"
   * Fixes to libav extractor
   * Allow 64bit time syscalls for 32bit systems in seccomp sandbox
   * Manpage fixes
   * Build fixes
+  * Fix "tracker index" crash on broken XDG directory setups
 
-Translations: ne, zh_TW
+Translations: ne, uk, zh_TW
 
 NEW in 3.1.1 - 2021-04-02
 =========================
