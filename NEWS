@@ -1,3 +1,18 @@
+NEW in 3.2.1 - 2021-10-30
+=========================
+  * Fix files moving between hidden and non-hidden
+  * Update nfo:fileName on content specific graphs too when moved
+  * Update nfo:fileLastModified in content specific graphs
+  * Add nfo:fileSize to the basic set of file info on the graph
+  * Fix tracker-miner-fs-3 crash when finding internal SPARQL errors
+  * Handle symlinks to directories as indexed folders better
+  * Fix tracker-writeback support for musicbrainz release tags and artist
+  * Fix duplicate entries on files created and instantly modified
+  * Fix unintended double extraction with disc-generic extractor
+  * Fixes for coverity warnings
+
+Translations: fur, he, lv, sk, sr
+
 NEW in 3.2.0 - 2021-09-18
 =========================
 Translations: da, de, en_GB, hr, hu, pl
