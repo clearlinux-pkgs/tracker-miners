@@ -1,3 +1,9 @@
+NEW in 3.2.2 - 2022-03-06
+=========================
+  * Backport seccomp rules for rseq and mbind syscalls
+
+Translations: ca, it
+
 NEW in 3.2.1 - 2021-10-30
 =========================
   * Fix files moving between hidden and non-hidden
