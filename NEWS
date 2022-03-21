@@ -1,8 +1,40 @@
-NEW in 3.2.2 - 2022-03-06
+NEW in 3.3.0 - 2022-03-19
 =========================
-  * Backport seccomp rules for rseq and mbind syscalls
+  * Initialize stable URN cache prior to extractor modules in
+    tracker-extract-3
 
-Translations: ca, it
+NEW in 3.3.0.rc - 2022-03-06
+============================
+  * Ignore subtrack titles for videos
+  * OpenBSD improvements to `tracker3 reset/daemon` CLI commands
+  * Improved test infrastructure around removable device support
+  * Fixed FANotify monitor to handle separate FAN_DELETE[_SELF]
+    events
+  * Fixed generation of man pages with newer asciidoc
+
+NEW in 3.3.0.beta - 2022-02-14
+==============================
+  * Changed to skip mountpoints found during recursive indexing.
+    Mountpoints must be explicitly configured as indexed folders now
+  * Fixed FANotify monitor to safely fallback to inotify in the cases
+    not currently covered by FANotify (e.g. btrfs subvolumes)
+  * Improved the stable URN scheme so it is guaranteed to be stable
+  * Removed deprecated API usage in libav extractor
+  * Fix --show-files in "tracker3 tag"
+  * Fix possible crashes with Clang
+
+NEW in 3.3.0.alpha - 2022-01-09
+===============================
+  * Use FANotify for file monitoring if available
+  * Use a more stable URN scheme for file content
+  * Add indexing roots to content specific graphs for availability info
+  * Truly disable nvcodec in gstreamer extractor
+  * Use the configured domain prefix in miner symlinks
+  * Add seccomp rules for recently used syscalls
+  * Performance improvements to tracker-miner-fs-3
+  * Plug memory leaks in tracker-miner-fs-3
+
+Translations: ca, fur, id, it, zh_CN
 
 NEW in 3.2.1 - 2021-10-30
 =========================
