@@ -1,3 +1,10 @@
+NEW in 3.3.1 - 2022-05-31
+=========================
+  * Properly fallback to inotify monitors on fanotify failures
+  * Fixes to handling of files being atomically replaced.
+  * Fixes to handling of IPTC data embedded in TIFFs
+  * Improvements to "tracker3 status" output and redirection handling.
+
 NEW in 3.3.0 - 2022-03-19
 =========================
   * Initialize stable URN cache prior to extractor modules in
