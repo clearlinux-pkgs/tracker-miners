@@ -1,9 +1,39 @@
-NEW in 3.3.1 - 2022-05-31
+NEW in 3.4.0 - 2022-09-17
 =========================
-  * Properly fallback to inotify monitors on fanotify failures
-  * Fixes to handling of files being atomically replaced.
-  * Fixes to handling of IPTC data embedded in TIFFs
-  * Improvements to "tracker3 status" output and redirection handling.
+Translations: fr
+
+NEW in 3.4.0.rc - 2022-09-04
+============================
+  * Fixes to libav/ffmpeg extractor
+  * Remove text/plain files from ignored-files, there are more
+    specific setting to control indexed text content
+  * Fix build on MacOS
+  * Fix compiler/build warnings
+
+Translations: ab, ca, cs, de, eu, gl, he, hr, hu, id, ko, lt, pl, pt_BR, ru, sl, tr, zh_CN
+
+NEW in 3.4.0.beta - 2022-08-08
+==============================
+  * Add --list and --delete options to RSS miner
+  * Text extraction fixes on ODS and ODG file formats
+  * Build fixes on MacOS
+  * Improve logging of filesystem miner elapsed time information
+  * Improve performance of filesystem move operations
+  * Do not show duplicate results in "tracker3 search" CLI tool
+
+Translations: ab, es, pt, sv, uk
+
+NEW in 3.4.0.alpha - 2022-07-13
+===============================
+  * Fix fallback from fanotify to inotify
+  * Improvements to "tracker3 status" CLI
+  * Check field type on IPTC data embedded in TIFFs
+  * Avoid non-existent ontology in libav extractor
+  * Fix some file updates being missed through
+    fanotify
+  * Fix possible tracker-miner-fs-3 crashes on shutdown
+
+Translations: ka
 
 NEW in 3.3.0 - 2022-03-19
 =========================
