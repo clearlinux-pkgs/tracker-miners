@@ -1,3 +1,16 @@
+NEW in 3.4.1 - 2022-10-26
+=========================
+  * Warning fixes to gstreamer extractor
+  * Silence EXDEV warnings on FANotify monitor failures, likely
+    in some systems
+  * New handled syscalls in seccomp: set_mempolicy, get_mempolicy,
+    epoll_create1
+  * Improve performance of lookups of related CUE files for gstreamer
+    media
+  * Fix memory leaks
+
+Translations: ab, bg, fur, kk, sk, sr, tr
+
 NEW in 3.4.0 - 2022-09-17
 =========================
 Translations: fr
