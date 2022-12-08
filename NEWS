@@ -1,3 +1,10 @@
+NEW in 3.4.2 - 2022-12-05
+=========================
+  * Fix advised flatpak command in sandboxing documentation
+  * Fix intermittent build break
+
+Translations: ab, nl
+
 NEW in 3.4.1 - 2022-10-26
 =========================
   * Warning fixes to gstreamer extractor
