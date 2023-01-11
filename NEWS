@@ -1,3 +1,13 @@
+NEW in 3.4.3 - 2023-01-11
+=========================
+  * Fix possible warnings in tracker-miner-fs-3
+  * Fixes to handle BTRFS subvolumes
+  * Reset nie:isStoredAs/nie:interpretedAs on updated folders
+  * Drop 'fluidsynthmidi' GStreamer module
+  * Fix GSource leak
+
+Translations: ab
+
 NEW in 3.4.2 - 2022-12-05
 =========================
   * Fix advised flatpak command in sandboxing documentation
