@@ -1,3 +1,2 @@
-3.5.0
-pkgconfig(tracker-sparql-3.0)
-pygobject
+3.5.1
+pypi(gi)
