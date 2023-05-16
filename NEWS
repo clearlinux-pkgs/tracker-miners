@@ -1,3 +1,11 @@
+NEW in 3.5.2 - 2023-05-12
+=========================
+  * Fix a number of potential crashers
+  * Fix possibly stuck extractor process
+  * Restore performance lost in 3.5.1 of extractor query to get
+    unextracted items.
+  * Plug memory leak
+
 NEW in 3.5.1 - 2023-04-25
 =========================
   * The tracker-extract-3 service moved all SPARQL queries and updates to

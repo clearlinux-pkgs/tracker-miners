@@ -4,10 +4,10 @@
 # Using build pattern: meson
 #
 Name     : tracker-miners
-Version  : 3.5.1
-Release  : 50
-URL      : https://download.gnome.org/sources/tracker-miners/3.5/tracker-miners-3.5.1.tar.xz
-Source0  : https://download.gnome.org/sources/tracker-miners/3.5/tracker-miners-3.5.1.tar.xz
+Version  : 3.5.2
+Release  : 51
+URL      : https://download.gnome.org/sources/tracker-miners/3.5/tracker-miners-3.5.2.tar.xz
+Source0  : https://download.gnome.org/sources/tracker-miners/3.5/tracker-miners-3.5.2.tar.xz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
@@ -98,23 +98,26 @@ services components for the tracker-miners package.
 
 
 %prep
-%setup -q -n tracker-miners-3.5.1
-cd %{_builddir}/tracker-miners-3.5.1
+%setup -q -n tracker-miners-3.5.2
+cd %{_builddir}/tracker-miners-3.5.2
+pushd ..
+cp -a tracker-miners-3.5.2 buildavx2
+popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1682453645
+export SOURCE_DATE_EPOCH=1684256690
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain -Dabiword=false \
 -Dbattery_detection=none \
 -Dcharset_detection=icu \
@@ -146,6 +149,37 @@ CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --
 -Dxmp=disabled \
 -Dxps=disabled  builddir
 ninja -v -C builddir
+CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 -O3" CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 " LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3" meson --libdir=lib64 --prefix=/usr --buildtype=plain -Dabiword=false \
+-Dbattery_detection=none \
+-Dcharset_detection=icu \
+-Dcue=disabled \
+-Dexif=disabled \
+-Dextract=true \
+-Dgeneric_media_extractor=gstreamer \
+-Dgif=disabled \
+-Dgsf=disabled \
+-Dguarantee_metadata=false \
+-Dicon=false \
+-Diptc=disabled \
+-Diso=disabled \
+-Djpeg=disabled \
+-Dman=false \
+-Dminer_fs=true \
+-Dminer_rss=false \
+-Dmp3=false \
+-Dpdf=disabled \
+-Dplaylist=disabled \
+-Dpng=disabled \
+-Dps=false \
+-Draw=enabled \
+-Dtext=false \
+-Dtiff=disabled \
+-Dunzip_ps_gz_files=false \
+-Dwriteback=false \
+-Dxml=disabled \
+-Dxmp=disabled \
+-Dxps=disabled  builddiravx2
+ninja -v -C builddiravx2
 
 %check
 export LANG=C.UTF-8
@@ -159,11 +193,13 @@ mkdir -p %{buildroot}/usr/share/package-licenses/tracker-miners
 cp %{_builddir}/tracker-miners-%{version}/COPYING.GPL %{buildroot}/usr/share/package-licenses/tracker-miners/33fabce185708a9b17df7a9f37c7ed44eddc7e48 || :
 cp %{_builddir}/tracker-miners-%{version}/COPYING.LGPL %{buildroot}/usr/share/package-licenses/tracker-miners/9a1929f4700d2407c70b507b3b2aaf6226a9543c || :
 cp %{_builddir}/tracker-miners-%{version}/src/libtracker-miners-common/COPYING.LIB %{buildroot}/usr/share/package-licenses/tracker-miners/9a1929f4700d2407c70b507b3b2aaf6226a9543c || :
+DESTDIR=%{buildroot}-v3 ninja -C builddiravx2 install
 DESTDIR=%{buildroot} ninja -C builddir install
 %find_lang tracker3-miners
 ## install_append content
 mv %{buildroot}%{_sysconfdir}/xdg %{buildroot}%{_datadir}/.
 ## install_append end
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
@@ -197,6 +233,12 @@ mv %{buildroot}%{_sysconfdir}/xdg %{buildroot}%{_datadir}/.
 
 %files lib
 %defattr(-,root,root,-)
+/V3/usr/lib64/tracker-miners-3.0/extract-modules/libextract-bmp.so
+/V3/usr/lib64/tracker-miners-3.0/extract-modules/libextract-desktop.so
+/V3/usr/lib64/tracker-miners-3.0/extract-modules/libextract-dummy.so
+/V3/usr/lib64/tracker-miners-3.0/extract-modules/libextract-gstreamer.so
+/V3/usr/lib64/tracker-miners-3.0/extract-modules/libextract-raw.so
+/V3/usr/lib64/tracker-miners-3.0/libtracker-extract.so
 /usr/lib64/tracker-miners-3.0/extract-modules/libextract-bmp.so
 /usr/lib64/tracker-miners-3.0/extract-modules/libextract-desktop.so
 /usr/lib64/tracker-miners-3.0/extract-modules/libextract-dummy.so
@@ -206,6 +248,17 @@ mv %{buildroot}%{_sysconfdir}/xdg %{buildroot}%{_datadir}/.
 
 %files libexec
 %defattr(-,root,root,-)
+/V3/usr/libexec/tracker-extract-3
+/V3/usr/libexec/tracker-miner-fs-3
+/V3/usr/libexec/tracker-miner-fs-control-3
+/V3/usr/libexec/tracker3/daemon
+/V3/usr/libexec/tracker3/extract
+/V3/usr/libexec/tracker3/index
+/V3/usr/libexec/tracker3/info
+/V3/usr/libexec/tracker3/reset
+/V3/usr/libexec/tracker3/search
+/V3/usr/libexec/tracker3/status
+/V3/usr/libexec/tracker3/tag
 /usr/libexec/tracker-extract-3
 /usr/libexec/tracker-miner-fs-3
 /usr/libexec/tracker-miner-fs-control-3
