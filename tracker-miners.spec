@@ -5,7 +5,7 @@
 #
 Name     : tracker-miners
 Version  : 3.5.2
-Release  : 51
+Release  : 52
 URL      : https://download.gnome.org/sources/tracker-miners/3.5/tracker-miners-3.5.2.tar.xz
 Source0  : https://download.gnome.org/sources/tracker-miners/3.5/tracker-miners-3.5.2.tar.xz
 Summary  : No detailed summary available
@@ -109,7 +109,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1684256690
+export SOURCE_DATE_EPOCH=1685492462
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
