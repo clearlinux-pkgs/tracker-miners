@@ -5,7 +5,7 @@
 #
 Name     : tracker-miners
 Version  : 3.5.2
-Release  : 52
+Release  : 53
 URL      : https://download.gnome.org/sources/tracker-miners/3.5/tracker-miners-3.5.2.tar.xz
 Source0  : https://download.gnome.org/sources/tracker-miners/3.5/tracker-miners-3.5.2.tar.xz
 Summary  : No detailed summary available
