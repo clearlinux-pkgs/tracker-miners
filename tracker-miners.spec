@@ -4,10 +4,10 @@
 # Using build pattern: meson
 #
 Name     : tracker-miners
-Version  : 3.5.2
-Release  : 53
-URL      : https://download.gnome.org/sources/tracker-miners/3.5/tracker-miners-3.5.2.tar.xz
-Source0  : https://download.gnome.org/sources/tracker-miners/3.5/tracker-miners-3.5.2.tar.xz
+Version  : 3.6.0
+Release  : 54
+URL      : https://download.gnome.org/sources/tracker-miners/3.6/tracker-miners-3.6.0.tar.xz
+Source0  : https://download.gnome.org/sources/tracker-miners/3.6/tracker-miners-3.6.0.tar.xz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
@@ -30,6 +30,7 @@ BuildRequires : pkgconfig(libavformat)
 BuildRequires : pkgconfig(libavutil)
 BuildRequires : pkgconfig(libnm)
 BuildRequires : pkgconfig(libseccomp)
+BuildRequires : pkgconfig(tracker-sparql-3.0)
 BuildRequires : pkgconfig(upower-glib)
 BuildRequires : pypi(gi)
 BuildRequires : tracker-dev
@@ -98,10 +99,10 @@ services components for the tracker-miners package.
 
 
 %prep
-%setup -q -n tracker-miners-3.5.2
-cd %{_builddir}/tracker-miners-3.5.2
+%setup -q -n tracker-miners-3.6.0
+cd %{_builddir}/tracker-miners-3.6.0
 pushd ..
-cp -a tracker-miners-3.5.2 buildavx2
+cp -a tracker-miners-3.6.0 buildavx2
 popd
 
 %build
@@ -109,7 +110,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1685492462
+export SOURCE_DATE_EPOCH=1695736655
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib

@@ -1,3 +1,50 @@
+NEW in 3.6.0 - 2023-09-16
+<========================
+  * Fix possible race condition between directory crawling
+    and monitoring.
+  * Improved "tracker3 info" output
+  * Cleanups to tracker-miner-fs-3 code.
+
+Translations: eo
+
+  Highlights since 3.5.0:
+  * The tracker-extract-3 service moved all SPARQL queries and updates to
+    a GResource. Consistently uses TrackerSparqlStatement/TrackerResource
+    for updates.
+  * Many performance improvements.
+  * Desktop files in application folders are not indexed anymore.
+
+NEW in 3.6.rc - 2023-09-05
+==========================
+  * Throttle extractor process on battery conditions
+  * Handle deletion of directories no longer configured as
+    indexed.
+  * Lower footprint crawling very large directories
+  * Hint tracker-extract-3 file access with posix_fadvise
+  * Raise file descriptor limit in tracker-miner-fs-3
+  * Test fixes
+  * Build fixes
+
+Translations: fa, ka, tr, sv
+
+NEW in 3.6.beta - 2023-08-11
+============================
+  * Stop indexing applications
+  * Improve performance of reindexes induced by indexer changes
+  * More performance improvements in hot startup cases
+  * Fix potential infinite loops with unexpected Fanotify events
+  * Build fixes
+
+Translations: ro, tr
+
+NEW in 3.6.alpha - 2023-07-04
+=============================
+  * Greatly improve performance and memory usage during
+    post-startup checks on an already indexed filesystem.
+  * Build system fixes.
+
+Translations: it, tr
+
 NEW in 3.5.2 - 2023-05-12
 =========================
   * Fix a number of potential crashers
