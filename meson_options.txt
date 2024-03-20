@@ -5,6 +5,8 @@ option('extract', type: 'boolean', value: true,
        description: 'Enable the Tracker metadata extractor')
 option('functional_tests', type: 'boolean', value: true,
        description: 'Enable the Tracker functional test suite')
+option('sandbox_tests', type: 'boolean', value: true,
+       description: 'Enable the sandbox test suite')
 option('guarantee_metadata', type: 'boolean', value: false,
        description: 'Set nie:title and nie:contentCreated from filename and mtime if no metadata available')
 option('man', type: 'boolean', value: true,
@@ -16,7 +18,9 @@ option('miner_rss', type: 'boolean', value: true,
 option('writeback', type: 'boolean', value: true,
        description: 'Enable Tracker writeback feature')
 option('seccomp', type: 'boolean', value: true,
-       description: 'Enable seccomp support in Tracker metadata extractor')
+       description: 'Enable seccomp sandboxing support in Tracker metadata extractor')
+option('landlock', type: 'feature', value: 'auto',
+       description: 'Enable landlock sandboxing support in Tracker metadata extractor')
 option('domain_prefix', type: 'string', value: 'org.freedesktop',
        description: 'Domain prefix to use, useful for sandboxing')
 option('miner_fs_cache_location', type: 'string', value: '',

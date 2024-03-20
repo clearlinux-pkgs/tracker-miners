@@ -4,3 +4,5 @@ gstreamer-dev
 libseccomp-dev
 tracker-dev
 upower-dev
+gobject-introspection-dev
+gobject-introspection

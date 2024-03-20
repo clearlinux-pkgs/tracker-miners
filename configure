@@ -28,3 +28,4 @@
 -Dxml=disabled
 -Dxmp=disabled
 -Dxps=disabled
+-Dlandlock=disabled

@@ -1,3 +1,47 @@
+NEW in 3.7.0 - 2024-03-16
+=========================
+  * Call malloc_trim more timely after extraction
+  * Further syscall rules in the seccomp sandbox
+  * Further landlock rules
+  * Disallow indexer for gnome-initial-setup user
+  * Add -Dsandbox_tests option to disable sandbox tests
+
+Translations: da, de, lv, sv
+
+  Highlighted changes since 3.6.0:
+  * Use Landlock kernel API to control file access
+  * Improved sandbox
+
+NEW in 3.7.rc - 2024-03-04
+==========================
+  * Fix execution permissions of `tracker-extract-3` executable
+    under Landlock
+  * Further syscall rules in the seccomp sandbox
+  * Fix build with several combinations of options
+  * Update `tracker3 tag` man page
+
+Translations: be, cs, en_GB, es, eu, fa, fr, gl, he, hu, id, ka, kk,
+  ko, lt, lv, pl, ru, sl, tr, zh_CN
+
+NEW in 3.7.beta - 2024-02-13
+============================
+  * Install CLI subcommands as expected by Tracker 3.7.beta
+  * Add build option for Landlock
+
+Translations: ka, uk
+
+NEW in 3.7.alpha - 2024-01-08
+=============================
+
+  * Use Landlock kernel API to control file access
+  * Use private D-Bus connection for communication between
+    tracker-extract-3 and tracker-miner-fs-3
+  * Further tightened seccomp sandbox
+  * CLI man page improvements
+  * CI, build and test improvements
+
+Translations: ro, ru, uk
+
 NEW in 3.6.1 - 2023-10-31
 =========================
   * Improvements to the seccomp jail, and fixes for spurious SIGSYS
