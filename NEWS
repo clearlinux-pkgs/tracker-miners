@@ -1,3 +1,11 @@
+NEW in 3.7.1 - 2024-03-27
+=========================
+  * Improvements to the handling of corrupted databases
+  * Further syscall rules in the seccomp sandbox
+  * Fix some possible warnings during tracker-extract-3 startup
+  * Fixes to extraction of dc:source fields from XMP data
+  * Avoid SIGABRT on missing Landlock
+
 NEW in 3.7.0 - 2024-03-16
 =========================
   * Call malloc_trim more timely after extraction
