@@ -32,6 +32,8 @@ option('default_index_single_dirs', type: 'array',
        value: [ '$HOME', '&DOWNLOAD' ],
        description: 'List of directories to index without inspecting subfolders')
 
+option('fanotify', type: 'feature', value: 'auto',
+       description: 'Enable fanotify support on linux architechture')
 option('network_manager', type: 'feature', value: 'auto',
        description: 'Connection detection through NetworkManager')
 option('abiword', type: 'boolean', value: 'true',
