@@ -7,7 +7,7 @@
 #
 Name     : tracker-miners
 Version  : 3.7.3
-Release  : 60
+Release  : 61
 URL      : https://download.gnome.org/sources/tracker-miners/3.7/tracker-miners-3.7.3.tar.xz
 Source0  : https://download.gnome.org/sources/tracker-miners/3.7/tracker-miners-3.7.3.tar.xz
 Summary  : No detailed summary available
