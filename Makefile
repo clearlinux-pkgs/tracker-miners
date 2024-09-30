@@ -1,5 +1,5 @@
 PKG_NAME := tracker-miners
-URL = https://download.gnome.org/sources/tracker-miners/3.7/tracker-miners-3.7.3.tar.xz
+URL = https://gitlab.gnome.org/GNOME/localsearch/-/archive/3.8.0/localsearch-3.8.0.tar.bz2
 ARCHIVES = 
 
 include ../common/Makefile.common

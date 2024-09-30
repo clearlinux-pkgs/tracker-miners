@@ -1,6 +1,3 @@
-option('tracker_core', type: 'combo', choices: ['system', 'subproject'], value: 'system',
-       description: 'Use the system-installed version of Tracker core libraries, or build our own version as a Meson subproject.')
-
 option('extract', type: 'boolean', value: true,
        description: 'Enable the Tracker metadata extractor')
 option('functional_tests', type: 'boolean', value: true,
@@ -13,7 +10,7 @@ option('man', type: 'boolean', value: true,
        description: 'Install man pages')
 option('miner_fs', type: 'boolean', value: true,
        description: 'Enable the Tracker filesystem miner')
-option('miner_rss', type: 'boolean', value: true,
+option('miner_rss', type: 'boolean', value: false,
        description: 'Enable the Tracker RSS miner')
 option('writeback', type: 'boolean', value: true,
        description: 'Enable Tracker writeback feature')
@@ -97,3 +94,5 @@ option('systemd_user_services_dir', type: 'string',
        description: 'Directory to install systemd user .service files (value from systemd.pc is used by default)')
 option('tests_tap_protocol', type: 'boolean', value: false,
        description: 'Whether to enable TAP protocol on tests')
+option('test_utils_dir', type: 'string', value: '',
+       description: 'Directory to install trackertestutils Python package (or empty to use the default)')

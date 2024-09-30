@@ -1,3 +1,58 @@
+NEW in 3.8.0 - 2024-09-16
+=========================
+
+Translation updates:
+  * Basque
+  * Belarusian
+  * Brazilian Portuguese
+  * British English
+  * Bulgarian
+  * Chinese (China)
+  * Czech
+  * Danish
+  * Galician
+  * Georgian
+  * German
+  * Hebrew
+  * Hungarian
+  * Indonesian
+  * Lithuanian
+  * Persian
+  * Polish
+  * Portuguese
+  * Russian
+  * Slovenian
+  * Spanish
+  * Swedish
+  * Thai
+  * Turkish
+  * Ukrainian
+
+NEW in 3.8.rc - 2024-09-01
+==========================
+  * Use LOCALSEARCH_DEBUG environment variable for debugging
+  * A number of test/dist fixes with recent GStreamer and TinySPARQL
+
+Translations: be, cs, el, en_GB, fa, hu, ka, ko, lt, pt, pt_BR, tr, uk, zh_CN
+
+NEW in 3.8.beta - 2024-08-09
+============================
+  * Use udev to retrieve filesystem/subvolume UUID, for more stable content
+    identifiers.
+  * Blocked the "va" gstreamer module
+  * Renamed command line tool
+
+Translations: he, hi, ro, ru, sl, zh_TW
+
+NEW in 3.8.alpha - 2024-07-04
+=============================
+  * Rename project to LocalSearch
+  * Adopt test utilities from the former Tracker project,
+    now available as `localsearch3 test-sandbox`
+  * Avoid use of some ancillary files in the cache dir
+
+Translations: ca, hi
+
 NEW in 3.7.3 - 2024-05-02
 =========================
   * Fix possible crashes handling live changes to extractor
